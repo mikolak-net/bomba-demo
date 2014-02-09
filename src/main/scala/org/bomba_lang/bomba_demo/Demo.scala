@@ -20,8 +20,8 @@ object Demo {
     
    @bomba
    val prog3 = {
-    rain :- wet
-   	wet
+	    rain :- wet
+	   	wet
    }
    
    println(prog3.solve)
