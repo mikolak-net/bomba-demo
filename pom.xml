@@ -1,0 +1,77 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <groupId>org.bomba_lang</groupId>
+  <artifactId>bomba-demo</artifactId>
+  <version>0.3.0-SNAPSHOT</version>
+  <name>${project.artifactId}</name>
+  <description>Demo project for the bomba Scala DSL</description>
+  <inceptionYear>2014</inceptionYear>
+	<licenses>
+		<license>
+			<name>BSD 3-clause &quot;New&quot; or &quot;Revised&quot; License</name>
+			<url>http://www.spdx.org/licenses/BSD-3-Clause</url>
+		</license>
+	</licenses>
+
+	<properties>
+		<maven.compiler.source>1.7</maven.compiler.source>
+		<maven.compiler.target>1.7</maven.compiler.target>
+		<encoding>UTF-8</encoding>
+		<scala.version>2.10.3</scala.version>
+	</properties>
+
+	<repositories> <!-- necessary for macro-paradise plugin -->
+	   <repository>
+	     <id>oss.sonatype.org</id>
+	      <name>sonatype sapshots</name>
+	      <url>https://oss.sonatype.org/content/repositories/snapshots</url>
+	    </repository>
+	</repositories>
+
+	<dependencies>
+		<dependency>
+			<groupId>org.bomba_lang</groupId>
+			<artifactId>bomba</artifactId>
+			<version>${project.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.scala-lang</groupId>
+			<artifactId>scala-library</artifactId>
+			<version>${scala.version}</version>
+		</dependency>
+	</dependencies>
+
+  <build>
+    <sourceDirectory>src/main/scala</sourceDirectory>
+    <testSourceDirectory>src/test/scala</testSourceDirectory>
+    <plugins>
+      <plugin>
+        <!-- see http://davidb.github.com/scala-maven-plugin -->
+        <groupId>net.alchim31.maven</groupId>
+        <artifactId>scala-maven-plugin</artifactId>
+        <executions>
+          <execution>
+            <goals>
+              <goal>compile</goal>
+              <goal>testCompile</goal>
+            </goals>
+            <configuration>
+				<args>
+				  <arg>-make:transitive</arg>
+				  <arg>-dependencyfile</arg>
+				  <arg>${project.build.directory}/.scala_dependencies</arg>
+				</args>
+				<compilerPlugins>
+				  <compilerPlugin>
+				    <groupId>org.scala-lang.plugins</groupId>
+				    <artifactId>macro-paradise_${scala.version}</artifactId>
+				    <version>2.0.0-SNAPSHOT</version>
+				  </compilerPlugin>
+				</compilerPlugins> 	              
+            </configuration>
+          </execution>
+        </executions>
+      </plugin>
+    </plugins>
+  </build>
+</project>
