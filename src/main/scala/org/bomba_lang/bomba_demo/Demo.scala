@@ -39,6 +39,26 @@ object Demo {
    println(r0.solve(r1))
    println("-------------------")
    
+   
+   println("canonical program extension with default negation")
+   @bomba
+   val rn0 = {
+     rain :- wet & ~sprinkler
+   }
+   println(r0.solve)
+   @bomba
+   val rn1 = {
+     wet
+   }
+   println(rn0.solve(rn1))
+   @bomba
+   val rn2 = {
+     wet
+     sprinkler
+   }
+   println(rn0.solve(rn2))
+   println("-------------------")
+   
    println("variables")
    @bomba
    val varProg = {
@@ -51,7 +71,17 @@ object Demo {
    val varProgGround = new GroundProgram(varProg)
    println("Grounded: " + varProgGround)
    println("Result: "+varProgGround.solve)
-    
+   println("-------------------") 
+   
+   println("\"Formal\" notation") 
+   @bomba
+   val formalProg = {
+   	a ∨ b ⟵  x ∧ y ∧ z
+   }
+   println(formalProg)
+   
+   
+   
   }
 
 }
