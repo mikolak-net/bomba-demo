@@ -37,8 +37,8 @@ object Demo {
       wet
     }
     println(r0.solve(r1))
+    
     println("-------------------")
-
     println("canonical program extension with default negation")
     @bomba
     val rn0 = {
@@ -56,8 +56,8 @@ object Demo {
       sprinkler
     }
     println(rn0.solve(rn2))
+    
     println("-------------------")
-
     println("variables")
     @bomba
     val varProg = {
@@ -70,12 +70,24 @@ object Demo {
     val varProgGround = new GroundProgram(varProg)
     println("Grounded: " + varProgGround)
     println("Result: " + varProgGround.solve)
+    
+    
     println("-------------------")
-
+    println("Constraints")
+    @bomba
+    val constProg = {
+      x
+      Nil :- x
+    }
+    println(constProg)
+    println(constProg.solve) //empty set (*no* answer sets)
+    
+    println("-------------------")
     println("\"Formal\" notation")
     @bomba
     val formalProg = {
       a ∨ b ⟵ x ∧ y ∧ z
+      ⊥ ⟵ z ∧ d
     }
     println(formalProg)
 
