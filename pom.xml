@@ -18,6 +18,7 @@
 		<maven.compiler.target>1.7</maven.compiler.target>
 		<encoding>UTF-8</encoding>
 		<scala.version>2.10.3</scala.version>
+		<bomba.version>0.3.1</bomba.version>
 	</properties>
 
 	<repositories> <!-- necessary for macro-paradise plugin -->
@@ -32,7 +33,7 @@
 		<dependency>
 			<groupId>org.bomba-lang</groupId>
 			<artifactId>bomba</artifactId>
-			<version>${project.version}</version>
+			<version>${bomba.version}</version>
 		</dependency>
 		<dependency>
 			<groupId>org.scala-lang</groupId>
@@ -46,9 +47,10 @@
     <testSourceDirectory>src/test/scala</testSourceDirectory>
     <plugins>
       <plugin>
-        <!-- see http://davidb.github.com/scala-maven-plugin -->
+        <!--TODO:  see http://davidb.github.com/scala-maven-plugin -->
         <groupId>net.alchim31.maven</groupId>
         <artifactId>scala-maven-plugin</artifactId>
+		<version>3.1.6</version>        
         <executions>
           <execution>
             <goals>
